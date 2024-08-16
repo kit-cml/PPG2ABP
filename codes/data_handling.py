@@ -146,9 +146,9 @@ def fold_data():
     Y_test = np.array(Y_test)           # converting to numpy array
     Y_test -= min_abp                   # normalizing
     Y_test /= (max_abp-min_abp)
-    f = open("minmax.txt", "w")
-    f.write(repr(X_test) + '\n' + repr(Y_test))
-    f.close()
+    np.savetxt("minmax_X_test.txt", X_test, delimiter=',')  # Append Y_test, with comma as delimiter
+    np.savetxt("minmax_Y_test.txt", Y_test, delimiter=',')
+                                                                
                                                                 # saving the test data split
     pickle.dump({'X_test': X_test,'Y_test': Y_test}, open(os.path.join('data', 'test.p'), 'wb'))
 
