@@ -33,7 +33,7 @@ def fold_data():
         9: 80000,
     }
 
-    for fold_id in tqdm(range(10), desc='Folding Data'):        # iterate for 10 folds
+    for fold_id in tqdm(range(5), desc='Folding Data'):        # iterate for 10 folds
 
         fl = h5py.File(os.path.join('data', 'data.hdf5'), 'r')      # load the episode data
 
@@ -146,7 +146,9 @@ def fold_data():
     Y_test = np.array(Y_test)           # converting to numpy array
     Y_test -= min_abp                   # normalizing
     Y_test /= (max_abp-min_abp)
-
+    f = open("minmax.txt", "w")
+    f.write(repr(X_test) + '\n' + repr(Y_test))
+    f.close()
                                                                 # saving the test data split
     pickle.dump({'X_test': X_test,'Y_test': Y_test}, open(os.path.join('data', 'test.p'), 'wb'))
 
